@@ -2,7 +2,7 @@ clear;
 close all;
 clc;
 
-I = imread('./database/croquette.png');
+I = double(imread('./database/lion.jpg'));
 [h,w,c] = size(I);
 
 R=I(:,:,1);
@@ -14,7 +14,7 @@ Y = 0.299*R+0.587*G+0.114*B;
 Cb = 0.564*(B-Y)+128;
 Cr = 0.713*(R-Y)+128;
 L = (R+G+B)/3;
-figure, imshow(Y);
+figure, imshow(uint8(Y));
 
 [x,y] = ginput(2);
 line(x,y)
@@ -31,25 +31,22 @@ for i=1:U
     S(1,i) = L(round(M(2,i)),round(M(1,i)));
 end
 
+histo = histogram(S,256);
+index_seuil = otsu(histo);
+
 figure
 plot(S); title('Avant détermination des limites');
 
-ideb = 1;
-ifin = U;
-while S(1,ideb) >= 85
-    ideb = ideb + 1;
-end
-while S(1,ifin) >= 85
-    ifin = ifin - 1;
-end
-
-S = S(1, ideb:ifin);
-
-figure
-plot(S); title('Après détermination des limites');
-
+% ideb = 1;
+% ifin = U;
+% while S(1,ideb) >= 85
+%     ideb = ideb + 1;
+% end
+% while S(1,ifin) >= 85
+%     ifin = ifin - 1;
+% end
+% 
+% S = S(1, ideb:ifin);
+% 
 % figure
-% plot(profil)
-% xlabel('Segment')
-% ylabel('Intensite')
-% grid
+% plot(S); title('Après détermination des limites');
