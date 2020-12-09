@@ -37,22 +37,35 @@ for i=1:N
     signature1(1,i) = L(round(M(2,i)),round(M(1,i)));
 end
 
-histo = histogram(signature1,256);
-index_seuil = otsu(histo);
-
 figure('NumberTitle','off','name',"Première signature avant binarisation");
 plot(signature1);
 
-% ideb = 1;
-% ifin = U;
-% while S(1,ideb) >= 85
-%     ideb = ideb + 1;
-% end
-% while S(1,ifin) >= 85
-%     ifin = ifin - 1;
-% end
-% 
-% S = S(1, ideb:ifin);
-% 
-% figure
-% plot(S); title('Après détermination des limites');
+
+% Binarisation de la signature
+[histo,count] = hist(signature1,256);
+index_seuil = otsu(histo);
+seuil = count(index_seuil);
+
+signature2 = binarisation(signature1,seuil);
+
+figure('NumberTitle','off','name',"Signature après binarisation");
+plot(signature2);
+
+% Exclusion des parties gauches droites inutiles (bandes blanches)
+i=N;
+while(signature2(i)==0)
+    signature2(i)=[];
+    i = i-1;
+end
+while(signature2(1)==0)
+    signature2(1)=[];
+end
+
+figure('NumberTitle','off','name',"Signature après binarisation et exclusion des limites");
+plot(signature2);
+
+% Calcul unité longueur U et re-définition de la signature
+U = length(signature2)/95;
+
+
+
