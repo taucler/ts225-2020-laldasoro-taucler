@@ -30,18 +30,18 @@ long_rayon = sqrt((x(2)-x(1))^2+(y(2)-y(1))^2);
 % Premier échantillonage
 N = round(2*long_rayon); % nombre de points
 M = zeros(2,N);
-S = zeros(1,N);
+signature1 = zeros(1,N);
 
 for i=1:N
     M(:,i) = P1 + (i-1)*(P2-P1)/(N-1);
-    S(1,i) = L(round(M(2,i)),round(M(1,i)));
+    signature1(1,i) = L(round(M(2,i)),round(M(1,i)));
 end
 
-histo = histogram(S,256);
+histo = histogram(signature1,256);
 index_seuil = otsu(histo);
 
 figure('NumberTitle','off','name',"Première signature avant binarisation");
-plot(S);
+plot(signature1);
 
 % ideb = 1;
 % ifin = U;
