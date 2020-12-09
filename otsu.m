@@ -1,29 +1,29 @@
-function [index_seuil] = otsu(histo)
-
-cpt = histo.Data;
-L = length(cpt);
-Scpt = sum(cpt);
-w = cpt/Scpt;
-premu = zeros(1,L);
-
-    for i = 1:L
-        premu(i) = i*cpt(i);
+function [index] = otsu(histo)
+    N = 256;
+    h = histo.BinEdges;
+    max = 0;
+    
+    Sum_h = sum(h);
+    Sum_w = 0;
+    Sum_mu = 0;
+    
+    for k = 1:N
+        for i = 1:k
+            Sum_w = Sum_w + h(i); % Somme des h(i) jusqu'à k
+            Sum_mu = Sum_mu + i*h(i); % Somme des i*h(i) jusqu'à k
+        end    
+        
+        w(k) = Sum_w/Sum_h;
+        mu(k) = Sum_mu/Sum_h;
     end
-mu = premu/Scpt;
-
-crit = zeros(1,L);
-
-    for k = 1:L
-        crit(k) = w(k).*(mu(L)-mu(k)).^2 + (1-w(k)).*mu(k).^2;
-    end
-
-index_seuil = 0;
-max = 0;
-    for i = 1:L
-        if crit(i)>max
-            max = crit(i);
-            index_seuil = i;
+    
+    for k=1:N
+        crit = w(k)*(mu(N)-mu(k)).^2 + (1-w(k))*mu(k)^2;
+        
+        if crit>max
+            index = k;
+            max = crit;
         end
     end
-end
 
+end
