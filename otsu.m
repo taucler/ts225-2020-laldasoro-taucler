@@ -1,6 +1,5 @@
-function [index] = otsu(histo)
+function [index] = otsu(h)
     N = 256;
-    h = histo.BinEdges;
     max = 0;
     
     Sum_h = sum(h);

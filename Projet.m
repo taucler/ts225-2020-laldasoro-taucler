@@ -5,7 +5,7 @@ clc;
 
 %% Extraction de la signature le long d'un rayon 
 
-I = double(imread('img/lion.jpg'));
+I = double(imread('database/lion.jpg'));
 [h,w,c] = size(I);
 
 R = I(:,:,1);
@@ -52,14 +52,7 @@ figure('NumberTitle','off','name',"Signature après binarisation");
 plot(signature2);
 
 % Exclusion des parties gauches droites inutiles (bandes blanches)
-i=N;
-while(signature2(i)==0)
-    signature2(i)=[];
-    i = i-1;
-end
-while(signature2(1)==0)
-    signature2(1)=[];
-end
+[borne_gauche , borne_droite] = ech_limites(signature2);
 
 figure('NumberTitle','off','name',"Signature après binarisation et exclusion des limites");
 plot(signature2);
