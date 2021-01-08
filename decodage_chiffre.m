@@ -1,4 +1,4 @@
-function [chiffre,element] = decodage_chiffre(chiffre_code)
+function [chiffre,element] = decodage_chiffre(chiffre_code,u)
 
 serie = zeros(1,7);
 

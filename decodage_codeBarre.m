@@ -1,10 +1,10 @@
-function [codeBarre_num,cle] = decodage_codeBarre(signal)
+function [codeBarre_num,cle] = decodage_codeBarre(signal,u)
 codeBarre_num = zeros(1,13);
 elements = zeros(1,13);
 
 % 2e région
 for i=1:6
-    [codeBarre_num(i+1),elements(i+1)] = decodage_chiffre(signal(((i-1)*7+4):(i*7+3)));
+    [codeBarre_num(i+1),elements(i+1)] = decodage_chiffre(signal((((i-1)*7+4)*u):(i*7+3)*u),u);
 end
 
 % 1ère région (région normale gauche)
@@ -32,7 +32,7 @@ end
 
 % 4e région
 for i=1:6
-    [codeBarre_num(i+7),elements(i+7)] = decodage_chiffre(signal(((i-1)*7+51):(i*7+50)));
+    [codeBarre_num(i+7),elements(i+7)] = decodage_chiffre(signal((((i-1)*7+51)*u):((i*7+50)*u)),u);
 end
 
 % 5e région (région normale droite)
