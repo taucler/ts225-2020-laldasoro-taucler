@@ -54,7 +54,7 @@ elseif (strcmp(serie,'BNBBBNN')==1)
 elseif (strcmp(serie,'BBNNNBN')==1)
         chiffre = 4;
         element = 'B';
-elseif (stcmp(serie,'NBNNNBB')==1)        
+elseif (strcmp(serie,'NBNNNBB')==1)        
         chiffre = 4;
         element = 'C';
 elseif (strcmp(serie,'BNNBBBN')==1)        

@@ -1,4 +1,4 @@
-function [codeBarre_num] = decodage_codeBarre(signal)
+function [codeBarre_num,cle] = decodage_codeBarre(signal)
 codeBarre_num = zeros(1,13);
 elements = zeros(1,13);
 
@@ -46,4 +46,4 @@ for i=1:12
     end
 end
 sum = sum_impair + 3*sum_pair;
-sum = mod(sum,10);
+cle = mod(sum,10);

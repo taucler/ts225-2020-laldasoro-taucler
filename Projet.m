@@ -58,7 +58,7 @@ figure('NumberTitle','off','name',"Signature après binarisation et exclusion de
 plot(signature2);
 
 % Calcul unité longueur U et re-définition de la signature
-U = length(signature2)/95;
+U = abs(borne_droite-borne_gauche)/95;
 
 
 
