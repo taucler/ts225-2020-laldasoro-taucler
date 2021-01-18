@@ -17,8 +17,7 @@ for i=1:length(Mat_decodage)
     % dilatation de la série
     for m=1:7
         for n=1:u
-            serie_dilatee(((m-1)*u)+n) = Mat_decodage(m);
-        end
+            serie_dilatee(m+n) = Mat_decodage(m);
     end
     
     if (isequal(partie,Mat_decodage(i))==1)

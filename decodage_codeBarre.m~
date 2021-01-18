@@ -6,12 +6,12 @@ Mat_decodage = {'AAAAAA','AABABB','AABBAB','AABBBA','ABAABB','ABBAAB','ABBBAA','
 
 
 % Segmentation du signal bc en 5 parties
-[P1,P2,P3,P4,P5] = segmentation(signal,u);
+[P1,P2,P3,P4,P5] = segmentation(signature4,u);
 
 % 2e et 4e régions
 for i=1:6
-    [codeBarre(1,i+1),elements(i)] = decodage_chiffre(P2(((i-1)*14)+1:(i*14),u));
-    codeBarre(1,i+7) = decodage_chiffre(P4(((i-1)*14)+1:(i*14),u));
+    [codeBarre(1,i+1),element(i)] = decodage_chiffre(P2(((i-1)*14)+1:(i*14),u));
+    codeBarre(1,i+7
 end
 
 % 1ère région (région normale gauche)
@@ -27,9 +27,9 @@ sum_pair = 0;
 sum_impair = 0;
 for i=1:12
     if(mod(i,2)==0)
-        sum_pair = sum_pair + codeBarre(i);
+        sum_pair = sum_pair + codeBarre_num(i);
     else
-        sum_impair = sum_impair + codeBarre(i);
+        sum_impair = sum_impair + codeBarre_num(i);
     end
 end
 sum = sum_impair + 3*sum_pair;

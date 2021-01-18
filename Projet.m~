@@ -77,5 +77,5 @@ figure('NumberTitle','off','name',"Signature après binarisation");
 plot(signature4);
 
 % Décodage signature binarisée
-[codeBarre,cle] = decodage_codeBarre(signature4,u);
+
 
